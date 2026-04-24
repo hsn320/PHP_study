@@ -7,7 +7,35 @@ $classes = [
 ];
 
 // 複雑な配列データ
-$school = [];
+$schools = [
+    [
+        "id" => 1,
+        "name" => "ECCコンピュータ専門学校",
+        "collages" => [
+            [
+                "id" => 1,
+                "name" => "IT",
+                "courses" => [
+                    [
+                        "id" => 1,
+                        "name" => "Webデザイン",
+                        "short_name" => "WD"
+                    ],
+                    [
+                        "id" => 2,
+                        "name" => "システム開発研究",
+                        "short_name" => "IE"
+                    ]
+                ]
+            ],
+            [
+                "id" => 1,
+                "name" => "ゲームクリエイティブ",
+                "courses" => []
+            ],
+        ]
+    ]
+];
 
 ?>
 <!DOCTYPE html>
@@ -25,5 +53,25 @@ $school = [];
         <li><?= $key ?> : <?= $class ?></li>
     <?php endforeach ?>
     </ul>
+
+    <h2>複雑な配列データ</h2>
+    <ul>
+        <?php foreach($schools as $school): ?>
+        <li><?= $school["name"] ?>
+            <ul>
+                <?php foreach($school["collages"] as $collage): ?>
+                <li><?= $collage["name"] ?>カレッジ
+                    <ul>
+                        <?php foreach($collage["courses"] as $courses): ?>
+                        <li><?= $courses["name"] ?>コース</li>
+                        <?php endforeach ?>
+                    </ul>
+                </li>
+            <?php endforeach ?>
+            </ul>
+        </li>
+        <?php endforeach ?>
+    </ul>
+
 </body>
 </html>
