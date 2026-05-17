@@ -1,7 +1,7 @@
 <?php
 // sample03-1.php
 
-// $classes = json_decode(filter_inoput(INPUT_COOKIE, "sample03_1"));
+// $classes = json_decode(filter_input(INPUT_COOKIE, "sample03_1"));
 // // cookieの読み込みがNULLの場合は、$classesにから配列を保存する
 // if(!$classes){
 //     $classes = [];
