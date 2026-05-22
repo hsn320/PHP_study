@@ -1,11 +1,15 @@
 <?php
 // sample05-1.php
+// ログインページ
+// ログインしていない時しか残れない（ログイン済みはマイページへリダイレクト）
 
 // セッションの開始
 session_start();
 
-// セッションにデータを保存
-$_SESSION[ "username" ] = "huemori";
+if(isset($_SESSION[ "username" ])){
+    header("Location: sample05-2.php");
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +22,17 @@ $_SESSION[ "username" ] = "huemori";
 <body>
     <h1>セッション</h1>
     <h2>ログイン</h2>
-    <a href="sample05-2.php">sample05-2</a>
+    <form action="sample05-2.php" method="POST">
+        <div>
+            <label for="">USER ID</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="">PASSWORD</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <button type="submit">ログイン</button>
+    </form>
+
 </body>
 </html>

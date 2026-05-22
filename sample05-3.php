@@ -1,15 +1,19 @@
 <?php
 // sample05-2.php
+// ログアウト
 
 // セッションの開始
 session_start();
-
 // ログアウト処理
 // セッションのデータを削除
 // セッションの全破棄
 session_destroy();
+// セッションの一部の項目を削除する場合は
+// unset()で削除する
+// ログインへリダイレクト
+header("Location: sample05-1.php");
+exit;
 
-// セッションの一部の項目を削除する場合は、unset() で削除する
 ?>
 <!DOCTYPE html>
 <html lang="ja">

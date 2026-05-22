@@ -1,17 +1,46 @@
 <?php
 // sample05-2.php
+// マイページ
 
 // セッションの開始
 session_start();
 
-// セッションのデータを参照
-var_dump($_SESSION);
-// セッションにデータがなければ、リダイレクト
-// isset() 指定した入れ物が存在するかをチェック
-// empty() 中身が空かをチェック
-if( ! $_SESSION[ "username" ] ) {
-    // falseのとき
-    header("Location: sample05-1.php");
+// ログイン認証処理
+// セッションにログイン情報がなければ認証処理を行う
+if(empty($_SESSION[ "username" ])){
+    $users =[
+        [ "username" => "user01", "password" => password_hash("123qwe", PASSWORD_DEFAULT) ],
+        [ "username" => "user02", "password" => password_hash("initpass", PASSWORD_DEFAULT) ],
+        [ "username" => "user03", "password" => password_hash("password", PASSWORD_DEFAULT) ]
+    ];
+    // $testPassword = "password0124";
+    // $hashPassword = password_hash($testPassword, PASSWORD_DEFAULT);
+    
+    $username = filter_input(INPUT_POST, "username");
+    $passWord = filter_input(INPUT_POST, "password");
+    $hashPassword = null;
+    // ユーザーリストから一致するユーザー名を探す
+    foreach($users as $user) {
+        if($user [ "username" ] === $username){
+            $hashPassword = $user[ "password" ];
+            break;
+        }
+    }
+
+    // ユーザー名とパスワードが一致しているかのチェック
+    if(
+        $hashPassword &&
+        password_verify($passWord, $hashPassword)
+        ){
+        // 入力したパスワードと暗号化したパスワードが一致したとき
+        $_SESSION[ "username" ] = $username;
+    }
+    else{
+        // ログインページ(sample05-1)へリダイレクト
+        header("Location: sample05-1.php");
+        exit;
+    }
+
 }
 
 ?>
