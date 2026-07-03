@@ -25,7 +25,7 @@ try{
         $result[] = $row;
     }
 
-    var_dump($result);
+    // var_dump($result);
 
 }
 catch(PDOException $error){
@@ -42,6 +42,6 @@ catch(PDOException $error){
 </head>
 <body>
     <h1>DB操作</h1>
-    <h2>SEE¥ALCT</h2>
+    <h2>SELECT</h2>
 </body>
 </html>

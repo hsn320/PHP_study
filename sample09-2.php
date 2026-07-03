@@ -13,7 +13,7 @@ try {
     // テーブル名
     $table = TB_ZIP;
     // SQL
-    $sql = "SELECT * FROM $table WHERE city LIKE ? ";
+    $sql = "SELECT * FROM {$table} WHERE city LIKE ? ";
 
     // SQLでプリペアードステートメントの準備
     // プリペアードステートメントを使うことで、SQLインジェクション対策
@@ -24,6 +24,9 @@ try {
     $result = [];
     // 結果セットからレコードの取り出し
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if(! $row["town"]){
+            continue;
+        }
         $result[] = $row;
     }
 
@@ -36,7 +39,7 @@ try {
         column_key: "city"
     );
 
-    var_dump($result);
+    // var_dump($result);
 
 }
 catch (PDOException $error) {
@@ -66,7 +69,7 @@ catch (PDOException $error) {
     <div>
         <ul>
             <?php foreach ($result as $town) : ?>
-                <li><?= $town ?></li>
+                <li><?= $town["town"] ?></li>
             <?php endforeach ?>
         </ul>
     </div>
