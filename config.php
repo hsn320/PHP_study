@@ -18,3 +18,5 @@ const DB_DSN = DB_DROVER.":host=".DB_HOST.";dbname=".DB_NAME.";charset=".DB_CHAR
 
 // テーブル関連
 const TB_ZIP = "php1_zip";
+const TB_CATEGORIES = "php1_categories";
+const TB_PRODUCTS = "php1_products";
