@@ -11,3 +11,11 @@ function headers(array $params): void{
         header("{$key}: {$param}");
     }
 }
+
+// 
+// redirect
+// 
+function redirect(string $dest):void{
+    header("Location: {$dest}");
+    exit;
+}
